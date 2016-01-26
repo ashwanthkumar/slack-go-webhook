@@ -12,8 +12,7 @@ func main() {
   attachment1 := slack.Attachment {}
   attachment1.
     AddField(slack.Field { Title: "Author", Value: "Ashwanth Kumar" }).
-    AddField(slack.Field { Title: "Date", Value: "Jan 26th 2016" }).
-    AddField(slack.Field { Title: "Status", Value: "In Progress" })
+    AddField(slack.Field { Title: "Status", Value: "Completed" })
 
   payload := slack.Payload("Hello from <https://github.com/ashwanthkumar/slack-go-webhook|slack-go-webhook>, a Go-Lang library to send slack webhook messages.", 
                            "golang-bot", 
