@@ -8,12 +8,10 @@ import (
   "github.com/parnurzeal/gorequest"
 )
 
-func StringPtr(s string) *string { return &s }
-
 type Field struct {
   Title string  `json:"title"`
   Value string  `json:"value"`
-  Short bool  `json:"short"`
+  Short bool    `json:"short"`
 }
 
 type Attachment struct {
