@@ -1,3 +1,5 @@
+[![GoDoc](https://godoc.org/github.com/ashwanthkumar/slack-go-webhook?status.svg)](https://godoc.org/github.com/ashwanthkumar/slack-go-webhook)
+
 # slack-go-webhook
 
 Go Lang library to send messages to Slack via Incoming Webhooks. 
