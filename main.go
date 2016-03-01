@@ -35,6 +35,7 @@ func (attachment *Attachment) AddField(field Field) *Attachment {
 
 func Payload(text, username, imageOrIcon, channel string, attachments []Attachment) map[string]interface{} {
 	payload := make(map[string]interface{})
+	payload["parse"] = "full"
 	if username != "" {
 		payload["username"] = username
 	}
