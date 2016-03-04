@@ -63,7 +63,7 @@ func Payload(text, username, imageOrIcon, channel string, attachments []Attachme
 
 func Send(webhookUrl string, proxy string, payload map[string]interface{}) []error {
 	data, _ := json.Marshal(payload)
-	request := gorequest.New().proxy(proxy)
+	request := gorequest.New().Proxy(proxy)
 	_, _, err := request.
 		Post(webhookUrl).
 		Send(string(data)).
