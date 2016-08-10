@@ -23,7 +23,7 @@ func main() {
                            []slack.Attachment { attachment1 })
 
 
-  slack.Send("https://hooks.slack.com/services/foo/bar/baz", payload)
+  slack.Send("https://hooks.slack.com/services/foo/bar/baz", "", payload)
 }
 
 ```
