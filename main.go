@@ -1,6 +1,7 @@
 package slack
 
 import (
+	"fmt"
 	"encoding/json"
 	"log"
 	"strings"
@@ -61,18 +62,26 @@ func Payload(text, username, imageOrIcon, channel string, attachments []Attachme
 	return payload
 }
 
+func redirectPolicyFunc(req gorequest.Request, via []gorequest.Request) error {
+      return fmt.Errorf("Incorrect token (redirection)")
+}
+
 func Send(webhookUrl string, proxy string, payload map[string]interface{}) []error {
 	data, _ := json.Marshal(payload)
 	request := gorequest.New().Proxy(proxy)
-	_, _, err := request.
+	resp, _, err := request.
 		Post(webhookUrl).
+		RedirectPolicy(redirectPolicyFunc).
 		Send(string(data)).
 		End()
 
 	if err != nil {
 		log.Fatal(err)
 		return err
-	} else {
-		return nil
 	}
+	if resp.StatusCode >= 400 {
+		return []error{fmt.Errorf("Error sending msg. Status: %v", resp.Status)}
+	}
+
+	return nil
 }
