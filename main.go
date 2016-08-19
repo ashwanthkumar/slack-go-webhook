@@ -2,9 +2,7 @@ package slack
 
 import (
 	"fmt"
-	"encoding/json"
 	"log"
-	"strings"
 
 	"github.com/parnurzeal/gorequest"
 )
@@ -29,50 +27,33 @@ type Attachment struct {
 	Fields     []*Field `json:"fields"`
 }
 
+type Payload struct {
+	Parse				string				`json:"parse,omitempty"`
+	Username		string				`json:"username,omitempty"`
+	IconUrl			string				`json:"icon_url,omitempty"`
+	IconEmoji		string				`json:"icon_emoji,omitempty"`
+	Channel			string				`json:"channel,omitempty"`
+	Text				string				`json:"text,omitempty"`
+	Attachments	[]Attachment	`json:"attachments,omitempty"`
+}
+
 func (attachment *Attachment) AddField(field Field) *Attachment {
 	attachment.Fields = append(attachment.Fields, &field)
 	return attachment
-}
-
-func Payload(text, username, imageOrIcon, channel string, attachments []Attachment) map[string]interface{} {
-	payload := make(map[string]interface{})
-	payload["parse"] = "full"
-	if username != "" {
-		payload["username"] = username
-	}
-
-	if strings.HasPrefix("http", imageOrIcon) {
-		payload["icon_url"] = imageOrIcon
-	} else if imageOrIcon != "" {
-		payload["icon_emoji"] = imageOrIcon
-	}
-
-	if channel != "" {
-		payload["channel"] = channel
-	}
-
-	if text != "" {
-		payload["text"] = text
-	}
-
-	if len(attachments) > 0 {
-		payload["attachments"] = attachments
-	}
-
-	return payload
 }
 
 func redirectPolicyFunc(req gorequest.Request, via []gorequest.Request) error {
       return fmt.Errorf("Incorrect token (redirection)")
 }
 
-func Send(webhookUrl string, proxy string, payload map[string]interface{}) []error {
-	data, _ := json.Marshal(payload)
+func Send(token string, proxy string, payload Payload) []error {
+  webhookUrl := fmt.Sprintf("https://hooks.slack.com/services/%v", token)
+
 	request := gorequest.New().Proxy(proxy)
 	resp, _, err := request.
 		Post(webhookUrl).
 		RedirectPolicy(redirectPolicyFunc).
-		Send(string(data)).
+		Send(payload).
 		End()
 
 	if err != nil {
