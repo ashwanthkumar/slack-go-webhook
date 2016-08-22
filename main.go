@@ -48,9 +48,7 @@ func redirectPolicyFunc(req gorequest.Request, via []gorequest.Request) error {
 	return fmt.Errorf("Incorrect token (redirection)")
 }
 
-func Send(token string, proxy string, payload Payload) []error {
-	webhookUrl := fmt.Sprintf("https://hooks.slack.com/services/%v", token)
-
+func Send(webhookUrl string, proxy string, payload Payload) []error {
 	request := gorequest.New().Proxy(proxy)
 	resp, _, err := request.
 		Post(webhookUrl).

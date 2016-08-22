@@ -12,7 +12,7 @@ import "github.com/ashwanthkumar/slack-go-webhook"
 import "fmt"
 
 func main() {
-    token := "foo/bar/baz"
+    webhookUrl := "https://hooks.slack.com/services/foo/bar/baz"
 
     attachment1 := slack.Attachment {}
     attachment1.AddField(slack.Field { Title: "Author", Value: "Ashwanth Kumar" }).AddField(slack.Field { Title: "Status", Value: "Completed" })
@@ -23,7 +23,7 @@ func main() {
       IconEmoji: ":monkey_face:",
       Attachments: []slack.Attachment{attachment1},
     }
-    err := slack.Send(token, "", payload)
+    err := slack.Send(webhookUrl, "", payload)
     if len(err) > 0 {
       fmt.Printf("error: %s\n", err)
     }
