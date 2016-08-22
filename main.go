@@ -25,6 +25,8 @@ type Attachment struct {
 	Text       *string  `json:"text"`
 	ImageUrl   *string  `json:"image_url"`
 	Fields     []*Field `json:"fields"`
+	Footer     *string  `json:"footer"`
+	FooterIcon *string  `json:"footer_icon"`
 }
 
 type Payload struct {
