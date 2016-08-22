@@ -28,13 +28,13 @@ type Attachment struct {
 }
 
 type Payload struct {
-	Parse				string				`json:"parse,omitempty"`
-	Username		string				`json:"username,omitempty"`
-	IconUrl			string				`json:"icon_url,omitempty"`
-	IconEmoji		string				`json:"icon_emoji,omitempty"`
-	Channel			string				`json:"channel,omitempty"`
-	Text				string				`json:"text,omitempty"`
-	Attachments	[]Attachment	`json:"attachments,omitempty"`
+	Parse       string       `json:"parse,omitempty"`
+	Username    string       `json:"username,omitempty"`
+	IconUrl     string       `json:"icon_url,omitempty"`
+	IconEmoji   string       `json:"icon_emoji,omitempty"`
+	Channel     string       `json:"channel,omitempty"`
+	Text        string       `json:"text,omitempty"`
+	Attachments []Attachment `json:"attachments,omitempty"`
 }
 
 func (attachment *Attachment) AddField(field Field) *Attachment {
@@ -43,11 +43,11 @@ func (attachment *Attachment) AddField(field Field) *Attachment {
 }
 
 func redirectPolicyFunc(req gorequest.Request, via []gorequest.Request) error {
-      return fmt.Errorf("Incorrect token (redirection)")
+	return fmt.Errorf("Incorrect token (redirection)")
 }
 
 func Send(token string, proxy string, payload Payload) []error {
-  webhookUrl := fmt.Sprintf("https://hooks.slack.com/services/%v", token)
+	webhookUrl := fmt.Sprintf("https://hooks.slack.com/services/%v", token)
 
 	request := gorequest.New().Proxy(proxy)
 	resp, _, err := request.
