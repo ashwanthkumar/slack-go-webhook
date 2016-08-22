@@ -1,8 +1,8 @@
 package slack
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 	"log"
 	"strings"
 
@@ -27,6 +27,8 @@ type Attachment struct {
 	Text       *string  `json:"text"`
 	ImageUrl   *string  `json:"image_url"`
 	Fields     []*Field `json:"fields"`
+	Footer     *string  `json:"footer"`
+	FooterIcon *string  `json:"footer_icon"`
 }
 
 func (attachment *Attachment) AddField(field Field) *Attachment {
@@ -63,7 +65,7 @@ func Payload(text, username, imageOrIcon, channel string, attachments []Attachme
 }
 
 func redirectPolicyFunc(req gorequest.Request, via []gorequest.Request) error {
-      return fmt.Errorf("Incorrect token (redirection)")
+	return fmt.Errorf("Incorrect token (redirection)")
 }
 
 func Send(webhookUrl string, proxy string, payload map[string]interface{}) []error {
