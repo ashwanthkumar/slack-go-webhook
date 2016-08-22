@@ -2,30 +2,32 @@
 
 # slack-go-webhook
 
-Go Lang library to send messages to Slack via Incoming Webhooks. 
+Go Lang library to send messages to Slack via Incoming Webhooks.
 
 ## Usage
 ```go
 package main
 
 import "github.com/ashwanthkumar/slack-go-webhook"
+import "fmt"
 
 func main() {
-  attachment1 := slack.Attachment {}
-  attachment1.
-    AddField(slack.Field { Title: "Author", Value: "Ashwanth Kumar" }).
-    AddField(slack.Field { Title: "Status", Value: "Completed" })
+    webhookUrl := "https://hooks.slack.com/services/foo/bar/baz"
 
-  payload := slack.Payload("Hello from <https://github.com/ashwanthkumar/slack-go-webhook|slack-go-webhook>, a Go-Lang library to send slack webhook messages.", 
-                           "golang-bot", 
-                           "",
-                           "golang-test",
-                           []slack.Attachment { attachment1 })
-
-
-  slack.Send("https://hooks.slack.com/services/foo/bar/baz", "", payload)
+    attachment1 := slack.Attachment {}
+    attachment1.AddField(slack.Field { Title: "Author", Value: "Ashwanth Kumar" }).AddField(slack.Field { Title: "Status", Value: "Completed" })
+    payload := slack.Payload {
+      Text: "Hello from <https://github.com/ashwanthkumar/slack-go-webhook|slack-go-webhook>, a Go-Lang library to send slack webhook messages.\n<https://golangschool.com/wp-content/uploads/golang-teach.jpg|golang-img>",
+      Username: "robot",
+      Channel: "#general",
+      IconEmoji: ":monkey_face:",
+      Attachments: []slack.Attachment{attachment1},
+    }
+    err := slack.Send(webhookUrl, "", payload)
+    if len(err) > 0 {
+      fmt.Printf("error: %s\n", err)
+    }
 }
-
 ```
 
 ## License
