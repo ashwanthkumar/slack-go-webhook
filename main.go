@@ -2,7 +2,6 @@ package slack
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/parnurzeal/gorequest"
 )
@@ -57,7 +56,6 @@ func Send(webhookUrl string, proxy string, payload Payload) []error {
 		End()
 
 	if err != nil {
-		log.Fatal(err)
 		return err
 	}
 	if resp.StatusCode >= 400 {
