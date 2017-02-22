@@ -35,6 +35,7 @@ type Payload struct {
 	IconEmoji   string       `json:"icon_emoji,omitempty"`
 	Channel     string       `json:"channel,omitempty"`
 	Text        string       `json:"text,omitempty"`
+	LinkNames   string       `json:"link_names,omitempty"`
 	Attachments []Attachment `json:"attachments,omitempty"`
 }
 
