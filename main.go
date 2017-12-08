@@ -13,20 +13,21 @@ type Field struct {
 }
 
 type Attachment struct {
-	Fallback   *string  `json:"fallback"`
-	Color      *string  `json:"color"`
-	PreText    *string  `json:"pretext"`
-	AuthorName *string  `json:"author_name"`
-	AuthorLink *string  `json:"author_link"`
-	AuthorIcon *string  `json:"author_icon"`
-	Title      *string  `json:"title"`
-	TitleLink  *string  `json:"title_link"`
-	Text       *string  `json:"text"`
-	ImageUrl   *string  `json:"image_url"`
-	Fields     []*Field `json:"fields"`
-	Footer     *string  `json:"footer"`
-	FooterIcon *string  `json:"footer_icon"`
-	Timestamp  *int64   `json:"ts"`
+	Fallback   *string   `json:"fallback"`
+	Color      *string   `json:"color"`
+	PreText    *string   `json:"pretext"`
+	AuthorName *string   `json:"author_name"`
+	AuthorLink *string   `json:"author_link"`
+	AuthorIcon *string   `json:"author_icon"`
+	Title      *string   `json:"title"`
+	TitleLink  *string   `json:"title_link"`
+	Text       *string   `json:"text"`
+	ImageUrl   *string   `json:"image_url"`
+	Fields     []*Field  `json:"fields"`
+	Footer     *string   `json:"footer"`
+	FooterIcon *string   `json:"footer_icon"`
+	Timestamp  *int64    `json:"ts"`
+	MarkdownIn *[]string `json:"mrkdwn_in"`
 }
 
 type Payload struct {
