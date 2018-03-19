@@ -41,6 +41,7 @@ type Payload struct {
 	Attachments []Attachment `json:"attachments,omitempty"`
 	UnfurlLinks bool         `json:"unfurl_links,omitempty"`
 	UnfurlMedia bool         `json:"unfurl_media,omitempty"`
+	Markdown    bool         `json:"mrkdwn,omitempty"`
 }
 
 func (attachment *Attachment) AddField(field Field) *Attachment {
