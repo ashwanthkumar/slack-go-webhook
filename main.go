@@ -13,10 +13,10 @@ type Field struct {
 }
 
 type Action struct {
-	Type	   *string   `json:"type"`
-	Text	   *string   `json:"text"`
-	Url	   *string   `json:"url"`
-	Style	   *string   `json:"style"`
+	Type	string   `json:"type"`
+	Text	string   `json:"text"`
+	Url 	string   `json:"url"`
+	Style 	string   `json:"style"`
 }
 
 type Attachment struct {
