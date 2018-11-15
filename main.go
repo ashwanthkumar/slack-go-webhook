@@ -36,6 +36,7 @@ type Attachment struct {
 	Timestamp  *int64    `json:"ts"`
 	MarkdownIn *[]string `json:"mrkdwn_in"`
 	Actions	   []*Action `json:"actions"`
+	CallbackID *string   `json:"callback_id"`
 }
 
 type Payload struct {
