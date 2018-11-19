@@ -12,6 +12,13 @@ type Field struct {
 	Short bool   `json:"short"`
 }
 
+type Action struct {
+	Type	string   `json:"type"`
+	Text	string   `json:"text"`
+	Url 	string   `json:"url"`
+	Style 	string   `json:"style"`
+}
+
 type Attachment struct {
 	Fallback   *string   `json:"fallback"`
 	Color      *string   `json:"color"`
@@ -28,6 +35,8 @@ type Attachment struct {
 	FooterIcon *string   `json:"footer_icon"`
 	Timestamp  *int64    `json:"ts"`
 	MarkdownIn *[]string `json:"mrkdwn_in"`
+	Actions	   []*Action `json:"actions"`
+	CallbackID *string   `json:"callback_id"`
 }
 
 type Payload struct {
@@ -46,6 +55,11 @@ type Payload struct {
 
 func (attachment *Attachment) AddField(field Field) *Attachment {
 	attachment.Fields = append(attachment.Fields, &field)
+	return attachment
+}
+
+func (attachment *Attachment) AddAction(action Action) *Attachment {
+	attachment.Actions = append(attachment.Actions, &action)
 	return attachment
 }
 
